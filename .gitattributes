@@ -1,0 +1,1 @@
+pose_keypoints_estimator_service/model/rtmw-x_simcc-cocktail13_pt-ucoco_270e-256x192-fbef0d61_20230925.onnx filter=lfs diff=lfs merge=lfs -text

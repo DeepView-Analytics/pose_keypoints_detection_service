@@ -1,0 +1,14 @@
+# Ignore the tests directory
+pose_keypoints_estimator_service/tests/
+
+# Ignore Python cache files and directories
+__pycache__/
+*.pyc
+
+# Ignore the virtual environment directory
+posevenv/
+venv/
+
+
+# Ignore any other local configurations or files you don’t want in version control
+*.log

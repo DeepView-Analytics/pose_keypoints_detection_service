@@ -1,0 +1,10 @@
+# Ignore the tests directory
+pose_keypoints_estimator_service/tests/
+
+# Ignore Python cache files and directories
+__pycache__/
+*.pyc
+*.env
+# Ignore the virtual environment directory
+posevenv/
+venv/
