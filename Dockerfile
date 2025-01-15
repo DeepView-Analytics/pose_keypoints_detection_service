@@ -13,7 +13,8 @@ RUN pip install --upgrade pip
 
 # Install Git, Git LFS, and other dependencies
 RUN apt-get update \
-    && apt-get install -y --fix-missing git git-lfs ffmpeg libsm6 libxext6
+    && apt-get install -y --no-install-recommends git git-lfs ffmpeg libsm6 libxext6 \
+    && rm -rf /var/lib/apt/lists/*
 
 # Initialize Git LFS
 RUN git lfs install
