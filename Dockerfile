@@ -11,17 +11,21 @@ WORKDIR /app
 # Upgrade pip to avoid compatibility issues
 RUN pip install --upgrade pip
 
-# Install Git and clone the repository
-RUN apt-get update && apt-get install -y git ffmpeg libsm6 libxext6  \
-    && git clone https://github.com/DeepView-Analytics/schemas.git /schemas \
-    && pip install /schemas
+# Install Git, Git LFS, and other dependencies
+RUN apt-get update && apt-get install -y git git-lfs ffmpeg libsm6 libxext6
 
+# Initialize Git LFS
+RUN git lfs install
+
+# Clone the repository and pull LFS files
+RUN git clone https://github.com/DeepView-Analytics/schemas.git /schemas \
+    && cd /schemas && git lfs pull \
+    && pip install /schemas
 
 # Copy the requirements file and install dependencies
 COPY requirements.txt .
 
 RUN pip install --no-cache-dir -r requirements.txt
-
 
 # Copy the entire project into the container
 COPY . .
