@@ -1,0 +1,24 @@
+version: '3.9'
+
+services:
+  detection_service:
+    image: faroukdaboussi0/pose_estimation_service:latest
+    container_name: pose_estimation_service
+    environment:
+      - KAFKA_BOOTSTRAP_SERVERS=kafka1:29092
+      - KAFKA_TOPIC_REQUESTS=person_detected_response
+      - MILVUS_HOST=milvus
+      - MILVUS_PORT=19530
+      - REDIS_SERVER=redis-1
+      - REDIS_PORT=7001
+      - MODEL_PATH=pose_keypoints_estimator_service\model\rtmw-x_simcc-cocktail13_pt-ucoco_270e-256x192-fbef0d61_20230925.onnx
+      - AUTH_DISTANCE=10
+      - CONFIDENCE=0.1
+    ports:
+      - "8001:8001"  
+    networks:
+          - redis-graph_default 
+
+networks:
+  redis-graph_default  :
+    external: true
